@@ -1,0 +1,9 @@
+#2) Find the following a) sqr of number  b) cube of number
+A)
+x=int(input("Enter a number"))
+s=a**2
+print("The sqaure of the given number is:",s)
+B)
+y=int(input("Enter a number"))
+c=a**3
+print("The cube of the given number is",c)
