@@ -1,4 +1,4 @@
-#2) Find the following a) sqr of number  b) cube of number
+#1) Find the following a) sqr of number  b) cube of number
 A)
 x=int(input("Enter a number"))
 s=a**2
