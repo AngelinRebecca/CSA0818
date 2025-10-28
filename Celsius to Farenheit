@@ -1,9 +1,9 @@
-#1) Convert The Given Temperature From Celsius To Farenheit
+1) Convert The Given Temperature From Celsius To Farenheit
 C= int(input("Enter the temperature in Celsius"))
 F=(C*9/5)+32
 print("The Temperature In Farenheit is",F)
 
-#2) Convert The Given Temperature from Farenheit to Celsius
+2) Convert The Given Temperature from Farenheit to Celsius
 F=int(input("Enter the temperature in Farenhiet"))
 C=(F-32)*5/9
 print("The temperature in Celsius is:",C)
