@@ -1,0 +1,7 @@
+a=10
+b=6
+print("sum:",a+b)
+print("Subtraction:",a-b)
+print("Divison:",a/b)
+print("Floor Divison:",a//b)
+print("Modulus:",a%b)
