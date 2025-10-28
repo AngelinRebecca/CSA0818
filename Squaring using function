@@ -1,5 +1,6 @@
-def square():
-    a=int(input("Enter the number to be squared:"))
+def square(a):
     s=a**2
-    print("The square of the given number is:",s)
-square()
+    return s
+a=int(input("Enter the number to be squared:"))
+s= square(a)
+print(s)
