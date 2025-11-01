@@ -1,0 +1,19 @@
+import webbrowser
+import time
+
+# List of distracting websites
+blocked_sites = ["youtube.com", "reddit.com", "twitter.com", "instagram.com"]
+
+# Study session duration in minutes
+study_minutes = 50
+study_seconds = study_minutes * 60
+
+print("Focus mode ON! Stay productive...")
+
+start_time = time.time()
+while time.time() - start_time < study_seconds:
+    # Here you could add a feature to detect tabs or warn user
+    print("Studying... No distractions allowed!")
+    time.sleep(30)  # Check every 30 seconds
+
+print("Focus session over! You can now browse freely.")
