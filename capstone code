@@ -1,19 +1,36 @@
-import webbrowser
 import time
 
-# List of distracting websites
-blocked_sites = ["youtube.com", "reddit.com", "twitter.com", "instagram.com"]
+# Path to the hosts file (Windows path shown; change for Mac/Linux)
+hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
 
-# Study session duration in minutes
-study_minutes = 50
-study_seconds = study_minutes * 60
+# Redirect to localhost
+redirect = "127.0.0.1"
 
-print("Focus mode ON! Stay productive...")
+# List of websites to block
+blocked_sites = ["www.youtube.com", "youtube.com", "www.instagram.com", "instagram.com"]
 
-start_time = time.time()
-while time.time() - start_time < study_seconds:
-    # Here you could add a feature to detect tabs or warn user
-    print("Studying... No distractions allowed!")
-    time.sleep(30)  # Check every 30 seconds
+# Set blocking duration (in seconds)
+study_time = 60  # 1 minute for demo
 
-print("Focus session over! You can now browse freely.")
+print("Focus mode ON! Websites will be blocked during this session.")
+start = time.time()
+
+while time.time() - start < study_time:
+    with open(hosts_path, "r+") as file:
+        content = file.read()
+        for site in blocked_sites:
+            if site not in content:
+                file.write(f"\n{redirect} {site}")
+    print("Blocking distracting sites...")
+    time.sleep(10)  # Check every 10 seconds
+
+# After time ends — unblocking websites
+with open(hosts_path, "r+") as file:
+    lines = file.readlines()
+    file.seek(0)
+    for line in lines:
+        if not any(site in line for site in blocked_sites):
+            file.write(line)
+    file.truncate()
+
+print("Focus session over! Websites are unblocked now.")
