@@ -1,0 +1,4 @@
+a="Angelin"
+b="Rebecca"
+c=a+" "+b
+print(c)
