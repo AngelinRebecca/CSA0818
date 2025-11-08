@@ -1,0 +1,12 @@
+SIMPLE SCENARIO:
+During study hours, users often get distracted by websites like YouTube and Instagram.
+ The program starts a focus session for a fixed time and reminds users to stay focused.
+ After the session ends, users can freely access all websites again, improving productivity.
+
+  Future Scope 
+Add a graphical user interface (GUI) for easy use.
+Allow users to set custom study times and site lists.
+Include password protection to prevent early unblocking.
+Add notifications or timer alerts for focus sessions.
+Integrate with browsers or extensions for smarter blocking.
+Provide usage statistics to track focus productivity.
