@@ -1,6 +1,6 @@
 import time
 
-# Path to the hosts file (Windows path shown; change for Mac/Linux)
+# Path to the hosts file (Windows example; change for Mac/Linux)
 hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
 
 # Redirect to localhost
@@ -9,10 +9,21 @@ redirect = "127.0.0.1"
 # List of websites to block
 blocked_sites = ["www.youtube.com", "youtube.com", "www.instagram.com", "instagram.com"]
 
-# Set blocking duration (in seconds)
-study_time = 60  # 1 minute for demo
+# Get focus duration from the user (in minutes)
+while True:
+    try:
+        minutes = int(input("Enter focus duration in minutes: "))
+        if minutes <= 0:
+            print("Please enter a positive number.")
+            continue
+        break
+    except ValueError:
+        print("Invalid input. Please enter an integer value.")
 
-print("Focus mode ON! Websites will be blocked during this session.")
+# Convert minutes to seconds
+study_time = minutes * 60
+
+print(f"Focus mode ON for {minutes} minute(s)! Websites will be blocked during this session.")
 start = time.time()
 
 while time.time() - start < study_time:
