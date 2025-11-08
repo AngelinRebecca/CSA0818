@@ -10,3 +10,11 @@ Include password protection to prevent early unblocking.
 Add notifications or timer alerts for focus sessions.
 Integrate with browsers or extensions for smarter blocking.
 Provide usage statistics to track focus productivity.
+
+Import module – Use time to track focus duration.
+Define blocked sites – List distracting websites and set redirect to 127.0.0.1.
+Get user input – Ask for focus session time in minutes.
+Start session – Record start time and activate focus mode.
+Block websites – Loop: add blocked sites to hosts file until time ends.
+Unblock websites – Remove entries from hosts file after session.
+End session – Inform user that websites are unblocked.
