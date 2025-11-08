@@ -1,15 +1,17 @@
 import time
+import webbrowser
+from http.server import HTTPServer, BaseHTTPRequestHandler
+import threading
 
-# Path to the hosts file (Windows example; change for Mac/Linux)
-hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
+# Get websites to block from the user
+websites_input = input("Enter websites to block (comma-separated, e.g., youtube.com,instagram.com): ")
+blocked_sites = [site.strip().lower() for site in websites_input.split(",") if site.strip()]
 
-# Redirect to localhost
-redirect = "127.0.0.1"
+if not blocked_sites:
+    print("No websites provided. Exiting...")
+    exit()
 
-# List of websites to block
-blocked_sites = ["www.youtube.com", "youtube.com", "www.instagram.com", "instagram.com"]
-
-# Get focus duration from the user (in minutes)
+# Get focus duration from the user (minutes)
 while True:
     try:
         minutes = int(input("Enter focus duration in minutes: "))
@@ -20,28 +22,42 @@ while True:
     except ValueError:
         print("Invalid input. Please enter an integer value.")
 
-# Convert minutes to seconds
 study_time = minutes * 60
+print(f"Focus mode ON for {minutes} minute(s)! Websites will be blocked.")
 
-print(f"Focus mode ON for {minutes} minute(s)! Websites will be blocked during this session.")
-start = time.time()
+# Blocking HTML page
+html_content = """
+<html>
+<head><title>Blocked!</title></head>
+<body style="text-align:center; margin-top:50px;">
+<h1>🚫 This website is blocked during your focus session!</h1>
+<p>Stay focused for your own good 😉</p>
+</body>
+</html>
+"""
 
-while time.time() - start < study_time:
-    with open(hosts_path, "r+") as file:
-        content = file.read()
-        for site in blocked_sites:
-            if site not in content:
-                file.write(f"\n{redirect} {site}")
-    print("Blocking distracting sites...")
-    time.sleep(10)  # Check every 10 seconds
+# HTTP server to serve blocking page
+class BlockHandler(BaseHTTPRequestHandler):
+    def do_GET(self):
+        self.send_response(200)
+        self.send_header("Content-type", "text/html")
+        self.end_headers()
+        self.wfile.write(html_content.encode('utf-8'))
 
-# After time ends — unblocking websites
-with open(hosts_path, "r+") as file:
-    lines = file.readlines()
-    file.seek(0)
-    for line in lines:
-        if not any(site in line for site in blocked_sites):
-            file.write(line)
-    file.truncate()
+def run_server():
+    server_address = ('', 8080)
+    httpd = HTTPServer(server_address, BlockHandler)
+    httpd.serve_forever()
+
+# Start server in background thread
+threading.Thread(target=run_server, daemon=True).start()
+
+# Open blocking pages for each website to simulate blocking
+start_time = time.time()
+while time.time() - start_time < study_time:
+    for site in blocked_sites:
+        url = f"http://localhost:8080"
+        webbrowser.open(url, new=0)  # open in same browser window if possible
+    time.sleep(10)
 
 print("Focus session over! Websites are unblocked now.")
