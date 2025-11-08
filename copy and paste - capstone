@@ -11,10 +11,10 @@ Add notifications or timer alerts for focus sessions.
 Integrate with browsers or extensions for smarter blocking.
 Provide usage statistics to track focus productivity.
 
-Import module – Use time to track focus duration.
-Define blocked sites – List distracting websites and set redirect to 127.0.0.1.
-Get user input – Ask for focus session time in minutes.
-Start session – Record start time and activate focus mode.
-Block websites – Loop: add blocked sites to hosts file until time ends.
-Unblock websites – Remove entries from hosts file after session.
-End session – Inform user that websites are unblocked.
+User Input – Enter websites to block and focus duration in minutes.
+Start Focus Session – Timer begins for the given duration.
+Local Blocking Server – A simple HTTP server serves a “Blocked” page.
+Redirect Blocked Websites – Opens the blocking page in browser tabs for each website.
+Continuous Monitoring – Refreshes/opens the blocking page periodically until time ends.
+End of Session – Timer ends, focus session stops, websites are accessible again.
+
